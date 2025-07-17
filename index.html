@@ -10,7 +10,9 @@
   <div class="timer-container">
     <svg width="220" height="220">
       <circle cx="110" cy="110" r="100" stroke="#eee" stroke-width="10" fill="none"/>
-      <circle id="progress-ring" cx="110" cy="110" r="100" stroke="limegreen" stroke-width="10" fill="none" stroke-dasharray="628" stroke-dashoffset="628" />
+      <circle id="progress-ring" cx="110" cy="110" r="100" stroke="limegreen" stroke-width="10" fill="none" stroke-dasharray="628" stroke-dashoffset="628" style="transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 1s linear;" />
+
+      
     </svg>
     <div id="timer-display">00:00</div>
   </div>
