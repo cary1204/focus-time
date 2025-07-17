@@ -1,94 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #1a1a1a;
-    color: #fff;
-    text-align: center;
-  }
-  
-  h1 {
-    margin: 30px 0;
-    font-size: 2.5rem;
-  }
-  
-  .timer-container {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 2rem 3rem;
+  min-height: 100vh;
+  text-align: center;
+  transition: background 0.6s ease, color 0.6s ease;
+  background: #0d0b1d;
+  background: radial-gradient(ellipse at center, #1c1a3a 0%, #0d0b1d 80%);
+  color: #cbd5e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body.light-theme {
+  background: #f4f9e9;
+  color: #556b2f;
+}
+
+.container {
+  background: rgba(15, 12, 30, 0.85);
+  border-radius: 25px;
+  padding: 3rem 5rem; 
+  max-width: 750px;  
+  width: 100%;
+  box-shadow:
+    0 0 20px 4px rgba(255, 255, 255, 0.15),
+    0 0 30px 10px rgba(72, 61, 139, 0.35);
+  transition: background 0.6s ease, color 0.6s ease;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+body.light-theme .container {
+  background: #eaf1d8;
+  box-shadow:
+    0 2px 20px rgba(83, 109, 47, 0.3);
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: inherit;
+  text-shadow: 0 0 6px rgba(206, 206, 255, 0.5);
+}
+
+.timer-circle {
+  position: relative;
+  margin: 0 auto 3rem auto;
+  width: 280px;
+  height: 280px;
+  padding: 20px;
+  box-sizing: content-box;
+}
+#timer-display {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: 700;
+  user-select: none;
+  color: inherit;
+  text-shadow: 0 0 20px rgba(150, 200, 255, 0.95);
+}
+
+svg {
+  overflow: visible;
+  display: block;
+  margin: 0 auto;
+}
+
+svg circle {
+  filter: drop-shadow(0 0 6px rgba(206, 206, 255, 0.7));
+  transition: stroke 0.6s ease;
+  stroke-width: 10;
+}
+
+body.light-theme svg circle {
+  filter: drop-shadow(0 0 5px rgba(150, 200, 120, 0.6));
+}
+
+#progress-ring {
+  filter: drop-shadow(0 0 18px rgba(102, 255, 178, 0.9));
+  transition: stroke 0.6s ease, filter 0.6s ease;
+}
+
+body.light-theme #progress-ring {
+  filter: drop-shadow(0 0 14px rgba(112, 176, 62, 0.8));
+}
+
+.controls {
+  margin-bottom: 2.5rem;
+}
+
+.controls input[type="number"] {
+  width: 100px;
+  padding: 0.6rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #7f9c6e;
+  border-radius: 15px;
+  outline-offset: 2px;
+  transition: border-color 0.3s, background 0.3s;
+  font-weight: 600;
+  color: inherit;
+  background: transparent;
+}
+
+.controls input[type="number"]:focus {
+  border-color: #a9c7a3;
+  background: rgba(255 255 255 / 0.15);
+  color: #334d00;
+}
+
+.controls button {
+  margin-left: 12px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #6ee7b7 0%, #3b82f6 100%);
+  border: none;
+  border-radius: 15px;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(62, 153, 216, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.controls button:disabled {
+  background: #a7f3d0;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #2f855a;
+}
+
+.controls button:not(:disabled):hover {
+  background: linear-gradient(135deg, #34d399 0%, #2563eb 100%);
+  box-shadow: 0 12px 30px rgba(44, 197, 164, 0.7);
+}
+
+.toggles {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.toggles label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-shadow: 0 0 6px rgba(206, 206, 255, 0.4);
+}
+
+body.light-theme .toggles label {
+  color: #4b633d;
+  text-shadow: none;
+}
+
+.toggles input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: #34d399;
+  transition: accent-color 0.3s ease;
+}
+
+#lofi-container {
+  position: fixed;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 240px;
+  height: 140px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(62, 153, 216, 0.7);
+  z-index: 10;
+  background: #111a22;
+  transition: background 0.6s ease;
+}
+
+body.light-theme #lofi-container {
+  background: #e1ecd8;
+  box-shadow: 0 10px 30px rgba(100, 140, 60, 0.5);
+}
+
+#stim-container {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 520px;
+  height: 420px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(62, 153, 216, 0.7);
+  z-index: 10;
+  background: #111a22;
+  transition: background 0.6s ease;
+}
+
+body.light-theme #stim-container {
+  background: #e1ecd8;
+  box-shadow: 0 15px 35px rgba(100, 140, 60, 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #lofi-container {
     position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 30px;
-  }
-  
-  #timer-display {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .controls {
-    margin: 20px 0;
-  }
-  
-  .controls input,
-  .controls button {
-    padding: 10px 15px;
-    font-size: 16px;
-    margin: 10px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-  }
-  
-  .controls input {
-    width: 120px;
-  }
-  
-  .controls button {
-    background-color: #444;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .controls button:hover:not(:disabled) {
-    background-color: #666;
-  }
-  
-  .controls button:disabled {
-    background-color: #222;
-    cursor: not-allowed;
-  }
-  
-  .toggles {
-    margin: 20px 0;
-    font-size: 1rem;
-  }
-  
-  .toggles label {
-    margin: 0 15px;
-    cursor: pointer;
-  }
-  
-  .media {
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  #confetti-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
     width: 100%;
-    height: 100%;
-    z-index: 100;
+    height: 200px;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: 1.5rem;
   }
-  
+
+  #stim-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    top: auto;
+    right: auto;
+    transform: none;
+    margin-top: 1.5rem;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+  }
+}

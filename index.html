@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Time To Focus</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Focus Timer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body>
-  <h1>Focus Time Dashboard</h1>
-  <div class="timer-container">
-    <svg width="220" height="220">
-      <circle cx="110" cy="110" r="100" stroke="#eee" stroke-width="10" fill="none"/>
-      <circle id="progress-ring" cx="110" cy="110" r="100" stroke="limegreen" stroke-width="10" fill="none" stroke-dasharray="628" stroke-dashoffset="628" style="transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 1s linear;" />
+<body class="dark-theme">
+  <div class="container">
+    <h1>Time to Focus</h1>
 
-      
-    </svg>
-    <div id="timer-display">00:00</div>
+    <div class="timer-circle">
+      <svg width="220" height="220">
+        <circle cx="110" cy="110" r="100" stroke="#444" stroke-width="10" fill="none" />
+        <circle id="progress-ring" cx="110" cy="110" r="100" stroke="limegreen" stroke-width="10" fill="none"
+                stroke-dasharray="628" stroke-dashoffset="628" transform="rotate(-90 110 110)" />
+      </svg>
+      <div id="timer-display">00:00</div>
+    </div>
+
+    <div class="controls">
+      <input type="number" id="minutes-input" placeholder="Minutes" min="1" />
+      <button id="start-button">Start</button>
+      <button id="pause-button" disabled>Pause</button>
+      <button id="reset-button">Reset</button>
+    </div>
+
+    <div class="toggles">
+      <label><input type="checkbox" id="lofi-toggle" /> Lofi Mode</label>
+      <label><input type="checkbox" id="stim-toggle" /> Stimulence</label>
+      <label><input type="checkbox" id="theme-toggle" /> Light Mode</label>
+    </div>
+
+    <div id="lofi-container" class="hidden" style="margin-top: 20px;">
+      <iframe
+        width="300"
+        height="170"
+        src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&loop=1&playlist=jfKfPfyJRdk"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        muted="false"
+      ></iframe>
+    </div>
+
+    <div id="stim-container" class="hidden" style="margin-top: 20px;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/7ghSziUQnhs?si=CSwQNciAWnuERDA3&amp&mute=1&autoplay=1&start=21" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
   </div>
 
-  <div class="controls">
-    <input type="number" id="minutes-input" placeholder="Enter minutes" min="1">
-    <button id="start-button">Start</button>
-    <button id="pause-button" disabled>Pause</button>
-    <button id="reset-button">Reset</button>
-  </div>
-
-  <div class="toggles">
-    <label><input type="checkbox" id="lofi-toggle"> Lo-fi Music</label>
-    <label><input type="checkbox" id="stim-toggle"> Subway Surfers Stim</label>
-  </div>
-
-  <div id="lofi-container" class="media hidden">
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/jfKfPfyJRdk?enablejsapi=1&mute=0" frameborder="0" allowfullscreen></iframe>
-  </div>
-
-  <div id="stim-container" class="media hidden">
-    <iframe
-      width="350"
-      height="200"
-      src="https://www.youtube.com/embed/zZ7AimPACzc?autoplay=0&mute=1&loop=1&playlist=zZ7AimPACzc"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
-  </div>
-  
-
-  <canvas id="confetti-canvas"></canvas>
-
-  <script src="script.js"></script>
+  <script src="Script.js"></script>
 </body>
 </html>
